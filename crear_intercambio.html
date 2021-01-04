@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.79.0">
+    <title>Crear</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-5.0.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="styles/sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+  <body class="d-flex flex-column h-100">
+    
+<header>
+  <!-- Fixed navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="images/icon.png" alt="" width="30" height="30">
+      </a>
+      <a class="navbar-brand" href="#">Secret Santa</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="inicio.html">Inicio</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="intercambios.html">Intercambios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="amigos.html">Amigos</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- Begin page content -->
+<main class="flex-shrink-0">
+  <div class="container text-center">
+    <h1 class="mt-5">Crear Intercambio</h1>
+    <br>
+    <div class="input-group mb-3">
+      <button class="btn btn-outline-dark" type="button" id="button-addon1">Generar clave</button>
+      <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" disabled>
+    </div>
+    <p class="lead">Seleccionar participantes </p>
+    <div class="list-group">
+      <label class="list-group-item d-flex justify-content-start">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Angel Contreras
+      </label>
+      <label class="list-group-item d-flex justify-content-start">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Camila Perez
+      </label>
+      <label class="list-group-item d-flex justify-content-start">
+        <input class="form-check-input me-1" type="checkbox" value="">
+        Ricardo Sanchez
+      </label>
+    </div>
+    <br>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Nombre del Intercambio">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="DD/MM/AAAA">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Nombre del Intercambio">
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Temas de regalos</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tema 1">
+      <br>
+      <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Tema 2">
+      <br>
+      <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Tema 3">
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text">Monto máximo: $</span>
+      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      <span class="input-group-text">.00</span>
+    </div>
+    <div class="input-group">
+      <span class="input-group-text">Descripción</span>
+      <textarea class="form-control" aria-label="With textarea"></textarea>
+    </div>
+    <br>
+    <button type="button" class="btn btn-dark btn-lg">Crear un intercambio</button>
+  </div>
+</main>
+
+<footer class="mt-auto text-white-50">
+  <p>Secret Santa. Proyecto para Software Engineering for Movile Devices - ESCOM. Todos los derechos reservados. </p>
+</footer>
+
+
+    <script src="bootstrap-5.0.0/js/bootstrap.min.js"></script>
+
+      
+  </body>
+</html>

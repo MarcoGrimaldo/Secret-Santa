@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.79.0">
-    <title>Inicio</title>
+    <title>Intercambio</title>
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap-5.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -47,7 +47,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Inicio</a>
+            <a class="nav-link" aria-current="page" href="inicio.html">Inicio</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="intercambios.html">Intercambios</a>
@@ -64,36 +64,39 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container text-center">
-    <h1 class="mt-5">¡Bienvenido!</h1>
-    <p class="lead">Adri Martinez</p>
-    <button type="button" class="btn btn-outline-dark">Modificar datos</button>
+    <h1 class="mt-5">Intercambio Navideño</h1>
   </div>
-  <div class="container text-center">
-    <h1 lass="font-weight-bold">Invitaciones:</h1>
+  <div class="container">
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Clave</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+    </div>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
+      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+    </div>
+  </div>
+  <div class="container">
+    <p class="lead">Temas de los regalos</p>
     <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Intercambio Navideño
-        <a href="intercambio.html" class="btn btn-success btn-sm">Ver</a>
-        <!--button type="button" class="btn btn-success btn-sm" >Ver</button-->
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Intercambio Escolar
-        <button type="button" class="btn btn-success btn-sm">Ver</button>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Intercambio de Año nuevo
-        <button type="button" class="btn btn-success btn-sm">Ver</button>
-      </li>
+      <li class="list-group-item">Ropa</li>
+      <li class="list-group-item">Libros</li>
+      <li class="list-group-item">Tazas</li>
     </ul>
   </div>
-  <div class="container text-center">
-    <p class="lead">Únete a un intercambio con la clave: </p>
-    <div class="form-floating">
-      <input type="key" class="form-control" id="floatingInput">
-      <label for="floatingInput">Clave</label>
+  <div class="container">
+    <p class="lead">Participantes</p>
+    <ul class="list-group">
+      <li class="list-group-item">Juan Torrez</li>
+      <li class="list-group-item">Maria Fernandez</li>
+      <li class="list-group-item">Angel Lopez</li>
+    </ul>
+  </div>
+  <div class="container">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button">Aceptar</button>
+      <button class="btn btn-danger" type="button">Borrar</button>
     </div>
-    <br>
-    <button type="button" class="btn btn-dark">Ingresar clave</button>
   </div>
 </main>
 
