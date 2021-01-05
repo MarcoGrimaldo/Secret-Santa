@@ -1,3 +1,9 @@
+<?php
+  session_start();
+
+?>
+
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -50,10 +56,10 @@
             <a class="nav-link" aria-current="page" href="#">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="intercambios.html">Intercambios</a>
+            <a class="nav-link" href="intercambios.php">Intercambios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="amigos.html">Amigos</a>
+            <a class="nav-link" href="amigos.php">Amigos</a>
           </li>
         </ul>
       </div>
@@ -65,25 +71,44 @@
 <main class="flex-shrink-0">
   <div class="container text-center">
     <h1 class="mt-5">¡Bienvenido!</h1>
-    <p class="lead">Adri Martinez</p>
+    <p class="lead"><?php  echo $_SESSION['usuario'];  ?></p>
     <button type="button" class="btn btn-outline-dark">Modificar datos</button>
   </div>
   <div class="container text-center">
     <h1 lass="font-weight-bold">Invitaciones:</h1>
     <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Intercambio Navideño
-        <a href="intercambio.html" class="btn btn-success btn-sm">Ver</a>
-        <!--button type="button" class="btn btn-success btn-sm" >Ver</button-->
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Intercambio Escolar
-        <button type="button" class="btn btn-success btn-sm">Ver</button>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Intercambio de Año nuevo
-        <button type="button" class="btn btn-success btn-sm">Ver</button>
-      </li>
+      <?php
+        try{
+          $conexion = new PDO('mysql:host=localhost;dbname=SecretSanta','root','');
+        }catch(PDOException $e)
+        {
+            echo "Error: " , $e->getMessage();
+        }
+
+        $statement2 = $conexion->prepare('SELECT * FROM InvRecividas WHERE Id_usuario = :id_u');
+
+        $statement2->execute(array(
+            ':id_u' => $_SESSION['id']
+        ));
+
+        $resultado = $statement2->fetch();
+
+        if($resultado !== false)
+        {
+            foreach($resultado as $fila)
+            {
+              echo '<li class="list-group-item d-flex justify-content-between align-items-center">'.
+                    $fila['Nombre_intercambio'] .
+              '<button type="button" class="btn btn-success btn-sm">Ver</button>
+            </li>';
+            }
+        }
+        else
+        {
+          echo '<li class="list-group-item d-flex justify-content-between align-items-center">
+          No tienes invitaciones</li>';
+        }
+      ?>
     </ul>
   </div>
   <div class="container text-center">

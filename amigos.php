@@ -1,3 +1,8 @@
+<?php
+  session_start();
+
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -47,10 +52,10 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="inicio.html">Inicio</a>
+            <a class="nav-link" aria-current="page" href="inicio.php">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="intercambios.html">Intercambios</a>
+            <a class="nav-link" href="intercambios.php">Intercambios</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Amigos</a>
@@ -67,28 +72,56 @@
     <h1 class="mt-5">Amigos</h1>
     <br>
     <ul class="list-group">
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Angel Contreras
-        <a><img src="images/trash.png" alt="" width="25" height="25"></a>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Camila Perez
-        <a><img src="images/trash.png" alt="" width="25" height="25"></a>
-      </li>
-      <li class="list-group-item d-flex justify-content-between align-items-center">
-        Ricardo Sanchez
-        <a><img src="images/trash.png" alt="" width="25" height="25"></a>
-      </li>
+    <?php
+        try{
+          $conexion = new PDO('mysql:host=localhost;dbname=SecretSanta','root','');
+        }catch(PDOException $e)
+        {
+            echo "Error: " , $e->getMessage();
+        }
+
+        $statement2 = $conexion->prepare('SELECT * FROM Amigos WHERE Id_usuario = :id_u');
+
+        $statement2->execute(array(
+            ':id_u' => $_SESSION['id']
+        ));
+
+        $resultado = $statement2->fetchAll();
+
+        if($resultado)
+        {
+            foreach($resultado as $fila)
+            {
+              echo '<li class="list-group-item d-flex justify-content-between align-items-center">'.
+                    $fila['Nombre_amigo'] .
+              '<a><img src="images/trash.png" alt="" width="25" height="25"></a>
+            </li>';
+            }
+        }
+        else
+        {
+          echo '<li class="list-group-item d-flex justify-content-between align-items-center">
+          No tienes amigos :(</li>';
+        }
+      ?>
     </ul>
   </div>
   <div class="container text-center">
-    <p class="lead">Agrega a un amigo, ingresa su correo electronico </p>
-    <div class="form-floating">
-      <input type="key" class="form-control" id="floatingInput">
-      <label for="floatingInput">Correo electronico</label>
-    </div>
-    <br>
-    <button type="button" class="btn btn-dark">Agregar</button>
+    <form method="POST">
+      <p class="lead">Agrega a un amigo, ingresa su correo electronico </p>
+      <div class="form-floating">
+        <input type="key" class="form-control" name="email_amigo">
+        <label for="floatingInput">Correo electronico</label>
+      </div>
+      <br>
+      <button type="submit" name="submit" class="btn btn-dark">Agregar</button>
+    </form>
+    <?php
+      if(isset($_POST['submit']))
+      {
+          require("agrega_amigo.php");
+      }
+  ?>
   </div>
 </main>
 

@@ -35,24 +35,30 @@
     
     
 <main class="form-signin">
-  <form>
+  <form method="POST">
     <img class="mb-4" src="images/icon.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
-    <label for="inputEmail" class="visually-hidden">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Correo electronico" required autofocus>
+    <label for="inputEmail" class="visually-hidden" >Email address</label>
+    <input type="email" id="inputEmail" class="form-control" name="email" placeholder="Correo electronico" required autofocus>
     <label for="inputPassword" class="visually-hidden">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" name="password"required>
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Recordarme
       </label>
     </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar</button>
+    <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">Iniciar</button>
     <br>
     <br>
   </form>
+  <?php
+      if(isset($_POST['submit']))
+      {
+          require("signin.php");
+      }
+  ?>
   <p class="mt-5 mb-3 text-muted">¿No tienes una cuenta?</p>
-  <a href="registro.html" class="w-100 btn btn-lg btn btn-light">Registrate</a>
+  <a href="registro.php" class="w-100 btn btn-lg btn btn-light">Registrate</a>
 <p class="mt-5 mb-3 text-muted">&copy; 2020-2021</p>
 </main>
     

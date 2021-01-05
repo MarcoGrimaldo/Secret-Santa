@@ -11,29 +11,33 @@
 </head>
 <body>
     <div class="registration-form">
-        <form >
+        <form method="POST" action="">
             <div class="form-icon">
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="name" placeholder="Nombre">
+                <input type="text" class="form-control item" name="realname" placeholder="Nombre">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="username" placeholder="Username">
+                <input type="text" class="form-control item" name="username" placeholder="Username">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" id="password" placeholder="Password">
+                <input type="password" class="form-control item" name="password" placeholder="Password">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" id="email" placeholder="Email">
+                <input type="text" class="form-control item" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <button type="button" class="btn btn-block create-account">Crear cuenta</button>
+                <button type="submit" name="submit" value="Registrarme"class="btn btn-block create-account">Crear cuenta</button>
             </div>
         </form>
-        <div class="social-media">
-    
-        </div>
+        <?php
+            if(isset($_POST['submit']))
+            {
+                require("registrar.php");
+            }
+        ?>
+
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
