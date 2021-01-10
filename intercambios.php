@@ -87,9 +87,9 @@
             ':id_u' => $_SESSION['id']
         ));
 
-        $resultado = $statement2->fetch();
+        $resultado = $statement2->fetchAll();
 
-        if($resultado !== false)
+        if($resultado)
         {
             foreach($resultado as $fila)
             {

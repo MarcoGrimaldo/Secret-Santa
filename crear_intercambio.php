@@ -52,13 +52,13 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="inicio.html">Inicio</a>
+            <a class="nav-link" aria-current="page" href="inicio.php">Inicio</a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="intercambios.html">Intercambios</a>
+            <a class="nav-link" href="intercambios.php">Intercambios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="amigos.html">Amigos</a>
+            <a class="nav-link" href="amigos.php">Amigos</a>
           </li>
         </ul>
       </div>
@@ -69,59 +69,52 @@
 <!-- Begin page content -->
 <main class="flex-shrink-0">
   <div class="container text-center">
-    <h1 class="mt-5">Crear Intercambio</h1>
-    <br>
-    <div class="input-group mb-3">
-      <button class="btn btn-outline-dark" type="button" id="button-addon1">Generar clave</button>
-      <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1" disabled>
-    </div>
-    <p class="lead">Seleccionar participantes </p>
-    <div class="list-group">
-      <label class="list-group-item d-flex justify-content-start">
-        <input class="form-check-input me-1" type="checkbox" value="">
-        Angel Contreras
-      </label>
-      <label class="list-group-item d-flex justify-content-start">
-        <input class="form-check-input me-1" type="checkbox" value="">
-        Camila Perez
-      </label>
-      <label class="list-group-item d-flex justify-content-start">
-        <input class="form-check-input me-1" type="checkbox" value="">
-        Ricardo Sanchez
-      </label>
-    </div>
-    <br>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Nombre del Intercambio">
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="DD/MM/AAAA">
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text" id="inputGroup-sizing-default">Nombre</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="Nombre del Intercambio">
-    </div>
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Temas de regalos</label>
-      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Tema 1">
+    <form method="POST" action="">
+      <h1 class="mt-5">Crear Intercambio</h1>
       <br>
-      <input type="text" class="form-control" id="exampleFormControlInput2" placeholder="Tema 2">
+      <div class="input-group mb-3">
+        <button class="btn btn-outline-dark" type="submit" name="generaK">Generar clave</button>
+        <?php
+        $permitted_chars = '0123456789';
+        $key1 = substr(str_shuffle($permitted_chars), 0, 7);
+        $key0 = intval($key1);
+        if(isset($_POST['generaK']))
+        {
+          echo '<input type="text" class="form-control" value="' . $key0 . '" name="generaKey" disabled>';
+        }
+        ?>
+      </div>
+      <p class="lead">Seleccionar participantes </p>
+      <div class="list-group">
+      <?php
+        require("creando_intercambio.php");
+      ?>
+      </div>
       <br>
-      <input type="text" class="form-control" id="exampleFormControlInput3" placeholder="Tema 3">
-    </div>
-    <div class="input-group mb-3">
-      <span class="input-group-text">Monto máximo: $</span>
-      <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-      <span class="input-group-text">.00</span>
-    </div>
-    <div class="input-group">
-      <span class="input-group-text">Descripción</span>
-      <textarea class="form-control" aria-label="With textarea"></textarea>
-    </div>
-    <br>
-    <button type="button" class="btn btn-dark btn-lg">Crear un intercambio</button>
+      <div class="input-group mb-3">
+        <span class="input-group-text" >Nombre</span>
+        <input type="text" class="form-control" name="nom_inter" placeholder="Nombre del Intercambio">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Fecha</span>
+        <input type="text" class="form-control" name="date_inter" placeholder="AAAA-MM-DD">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Tema de regalos</label>
+        <input type="text" class="form-control" id="exampleFormControlInput1" name="tema_inter" placeholder="Tema">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text">Monto máximo: $</span>
+        <input type="text" class="form-control" name="monto_max">
+        <span class="input-group-text">.00</span>
+      </div>
+      <div class="input-group">
+        <span class="input-group-text">Descripción</span>
+        <textarea class="form-control" name="descrip"></textarea>
+      </div>
+      <br>
+      <button type="submit" name="submit_inter" class="btn btn-dark btn-lg">Crear un intercambio</button>
+    </form>
   </div>
 </main>
 

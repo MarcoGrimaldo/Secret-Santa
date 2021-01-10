@@ -72,7 +72,7 @@
   <div class="container text-center">
     <h1 class="mt-5">¡Bienvenido!</h1>
     <p class="lead"><?php  echo $_SESSION['usuario'];  ?></p>
-    <button type="button" class="btn btn-outline-dark">Modificar datos</button>
+    <!--button type="button" class="btn btn-outline-dark">Modificar datos</button-->
   </div>
   <div class="container text-center">
     <h1 lass="font-weight-bold">Invitaciones:</h1>
