@@ -47,13 +47,13 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="inicio.html">Inicio</a>
+            <a class="nav-link" aria-current="page" href="inicio.php">Inicio</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="intercambios.html">Intercambios</a>
+            <a class="nav-link" href="intercambios.php">Intercambios</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="amigos.html">Amigos</a>
+            <a class="nav-link" href="amigos.php">Amigos</a>
           </li>
         </ul>
       </div>
@@ -63,33 +63,57 @@
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
+  <?php require("con_intercambios.php"); ?>
   <div class="container text-center">
-    <h1 class="mt-5">Intercambio Navideño</h1>
+    <h1 class="mt-5"><?php echo $name_inter; ?></h1>
   </div>
   <div class="container">
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">Clave</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+      <input type="text" class="form-control" value=" <?php echo $id_intercambio; ?> " disabled>
     </div>
     <div class="input-group mb-3">
       <span class="input-group-text" id="inputGroup-sizing-default">Fecha</span>
-      <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" disabled>
+      <input type="text" class="form-control" value=" <?php echo $fecha_inter; ?> " disabled>
     </div>
   </div>
   <div class="container">
-    <p class="lead">Temas de los regalos</p>
+    <p class="lead">Tema de los regalos</p>
     <ul class="list-group">
-      <li class="list-group-item">Ropa</li>
-      <li class="list-group-item">Libros</li>
-      <li class="list-group-item">Tazas</li>
+      <li class="list-group-item"><?php echo $tema_inter; ?></li>
     </ul>
+  </div>
+  <div class="container">
+    <p class="lead">Comentarios</p>
+    <p> <?php echo $coments; ?> </p>
   </div>
   <div class="container">
     <p class="lead">Participantes</p>
     <ul class="list-group">
-      <li class="list-group-item">Juan Torrez</li>
-      <li class="list-group-item">Maria Fernandez</li>
-      <li class="list-group-item">Angel Lopez</li>
+    <?php
+
+        $statement0 = $conexion->prepare('SELECT * FROM Participantes_intercambio WHERE Clave_intercambio = :id_u');
+
+        $statement0->execute(array(
+            ':id_u' => $id_intercambio
+        ));
+
+        $resultado0 = $statement0->fetchAll();
+
+        if($resultado0)
+        {
+            foreach($resultado0 as $fila)
+            {
+              echo '<li class="list-group-item d-flex justify-content-between align-items-center">'.
+                    $fila['Nombre'] . '</li>';
+            }
+        }
+        else
+        {
+          echo '<li class="list-group-item d-flex justify-content-between align-items-center">
+          No hay invitados :(</li>';
+        }
+      ?>
     </ul>
   </div>
   <div class="container">
