@@ -59,7 +59,7 @@
         {
             if(isset($_POST[$id_a]))
             {
-                //echo "<script>alert('" . $noms_amigos[$i] ." seleccionado');</script>";
+                //echo "<script>alert('" . $noms_amigos[$i] ." seleccionado, correo " . $correo_amigos[$i] ."');</script>";
                 //echo "<script>alert('" . $key0 ." seleccionado');</script>";
                 $statement4 = $conexion->prepare("INSERT INTO Participantes_intercambio VALUES(:id_in, :id_am, :nom_am, 0, '.')");
                 $verif0 = $statement4->execute(array(
@@ -68,13 +68,19 @@
                     ':nom_am' => $noms_amigos[$i]
                 ));
 
-                $statement6 = $conexion->prepare("INSERT INTO Invitacion VALUES(NULL,:id_inter,:id_am,:tema,:nom_ami,:fecha,0,'.')");
+                $statement5 = $conexion->prepare('SELECT Id_usuario FROM Usuario WHERE Correo = :correo');
+                $resa = $statement5->execute(array(
+                    ':correo' => $correo_amigos[$i]
+                ));
+
+                $id_amix = $statement5->fetch();
+                //echo "<script>alert('" . $id_amix['Id_usuario'] ." seleccionado');</script>";
+                
+                $statement6 = $conexion->prepare("INSERT INTO Invitacion VALUES(NULL,:id_am,:id_inter,:nom_int,0)");
                 $result = $statement6->execute(array(
+                    ':id_am' => $id_amix['Id_usuario'],
                     ':id_inter' => $key0,
-                    ':id_am' => intval($id_a),
-                    ':tema' => $tema,
-                    ':nom_ami' => $noms_amigos[$i],
-                    ':fecha' => $fecha
+                    ':nom_int' => $nom_inter,
                 ));
                 
                 if($result)

@@ -5,6 +5,8 @@
     $mon_max = 0;
     $tema_inter = "";
     $coments = "";
+    $id_creador = 0;
+    $nombre_creador = "";
 
     try{
         $conexion = new PDO('mysql:host=localhost;dbname=SecretSanta','root','');
@@ -28,5 +30,16 @@
         $mon_max = $resultado['Monto_maximo'];
         $tema_inter = $resultado['Tema_intercambio'];
         $coments = $resultado['Comentarios'];
+        $id_creador = $resultado['Id_usuario'];
+
+
+        $statement5 = $conexion->prepare('SELECT Nombre FROM Usuario WHERE Id_usuario = :id');
+        $resa = $statement5->execute(array(
+            ':id' => $id_creador
+        ));
+
+        $nom_creador = $statement5->fetch();
+        $nombre_creador = $nom_creador['Nombre'];
+
     }
 ?>

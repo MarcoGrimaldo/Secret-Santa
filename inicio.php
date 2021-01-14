@@ -62,6 +62,16 @@
             <a class="nav-link" href="amigos.php">Amigos</a>
           </li>
         </ul>
+        <form method="POST" class="d-flex">
+          <button href="index.html" class="btn btn btn-danger" type="submit" name="cerrar">Cerrar Sesión</button>
+        </form>
+        <?php 
+          if(isset($_POST['cerrar']))
+          {
+            session_destroy();
+            header('Location: index.html');
+          }
+        ?>
       </div>
     </div>
   </nav>
@@ -77,38 +87,7 @@
   <div class="container text-center">
     <h1 lass="font-weight-bold">Invitaciones:</h1>
     <ul class="list-group">
-      <?php
-        try{
-          $conexion = new PDO('mysql:host=localhost;dbname=SecretSanta','root','');
-        }catch(PDOException $e)
-        {
-            echo "Error: " , $e->getMessage();
-        }
-
-        $statement2 = $conexion->prepare('SELECT * FROM InvRecividas WHERE Id_usuario = :id_u');
-
-        $statement2->execute(array(
-            ':id_u' => $_SESSION['id']
-        ));
-
-        $resultado = $statement2->fetch();
-
-        if($resultado !== false)
-        {
-            foreach($resultado as $fila)
-            {
-              echo '<li class="list-group-item d-flex justify-content-between align-items-center">'.
-                    $fila['Nombre_intercambio'] .
-              '<button type="button" class="btn btn-success btn-sm">Ver</button>
-            </li>';
-            }
-        }
-        else
-        {
-          echo '<li class="list-group-item d-flex justify-content-between align-items-center">
-          No tienes invitaciones</li>';
-        }
-      ?>
+    <?php require("mostrar_invitaciones.php");?>
     </ul>
   </div>
   <div class="container text-center">

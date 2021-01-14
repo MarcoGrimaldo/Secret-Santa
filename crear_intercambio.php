@@ -61,6 +61,16 @@
             <a class="nav-link" href="amigos.php">Amigos</a>
           </li>
         </ul>
+        <form method="POST" class="d-flex">
+          <button href="index.html" class="btn btn btn-danger" type="submit" name="cerrar">Cerrar Sesión</button>
+        </form>
+        <?php 
+          if(isset($_POST['cerrar']))
+          {
+            session_destroy();
+            header('Location: index.html');
+          }
+        ?>
       </div>
     </div>
   </nav>

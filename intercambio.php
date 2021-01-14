@@ -56,6 +56,16 @@
             <a class="nav-link" href="amigos.php">Amigos</a>
           </li>
         </ul>
+        <form method="POST" class="d-flex">
+          <button href="index.html" class="btn btn btn-danger" type="submit" name="cerrar">Cerrar Sesión</button>
+        </form>
+        <?php 
+          if(isset($_POST['cerrar']))
+          {
+            session_destroy();
+            header('Location: index.html');
+          }
+        ?>
       </div>
     </div>
   </nav>
@@ -88,7 +98,13 @@
     <p> <?php echo $coments; ?> </p>
   </div>
   <div class="container">
-    <p class="lead">Participantes</p>
+    <p class="lead">Creador</p>
+    <ul class="list-group">
+      <li class="list-group-item"><?php echo $nombre_creador; ?></li>
+    </ul>
+  </div>
+  <div class="container">
+    <p class="lead">Invitados</p>
     <ul class="list-group">
     <?php
 
