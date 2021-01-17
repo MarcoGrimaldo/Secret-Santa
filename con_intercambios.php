@@ -42,4 +42,43 @@
         $nombre_creador = $nom_creador['Nombre'];
 
     }
+
+    if(isset($_POST['acp_btn']))
+    {
+        header('Location: inicio.php');
+    }
+
+    if(isset($_POST['brr_btn']))
+    {
+        if($id_creador == $_SESSION['id'])
+        {
+            //drop intercambio
+        }
+        else
+        {
+            $statement6 = $conexion->prepare('DELETE FROM Invitacion WHERE Id_usuario = :id_u AND Clave_intercambio = :cl_in');
+            $resa = $statement6->execute(array(
+                ':id_u' => $_SESSION['id'],
+                ':cl_in' => $id_intercambio
+            ));
+
+            if($resa)
+            {
+                echo "<script>alert('Borrado de Invitacion');</script>";
+            }
+
+            $statement7 = $conexion->prepare('DELETE FROM Participantes_intercambio WHERE Clave_intercambio = :cl_in AND Nombre = :nom');
+            $resa0 = $statement7->execute(array(
+                ':cl_in' => $id_intercambio,
+                ':nom' => $_SESSION['usuario']
+            ));
+
+            if($resa0)
+            {
+                echo "<script>alert('Borrado de Participantes');</script>";
+                header('Location: inicio.php');
+            }
+
+        }
+    }
 ?>

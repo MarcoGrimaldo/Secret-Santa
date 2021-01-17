@@ -29,6 +29,7 @@
         {
             $_SESSION['usuario'] = $resultado['Nombre'];
             $_SESSION['id'] = $resultado['Id_usuario'];
+            $_SESSION['email'] = $resultado['Correo'];
             //echo $_SESSION['usuario'];
             //echo $_SESSION['id'];
             header('Location: inicio.php');

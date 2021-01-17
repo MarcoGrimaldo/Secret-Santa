@@ -79,26 +79,31 @@
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
-  <div class="container text-center">
-    <h1 class="mt-5">¡Bienvenido!</h1>
-    <p class="lead"><?php  echo $_SESSION['usuario'];  ?></p>
-    <!--button type="button" class="btn btn-outline-dark">Modificar datos</button-->
-  </div>
-  <div class="container text-center">
-    <h1 lass="font-weight-bold">Invitaciones:</h1>
-    <ul class="list-group">
-    <?php require("mostrar_invitaciones.php");?>
-    </ul>
-  </div>
-  <div class="container text-center">
-    <p class="lead">Únete a un intercambio con la clave: </p>
-    <div class="form-floating">
-      <input type="key" class="form-control" id="floatingInput">
-      <label for="floatingInput">Clave</label>
+
+    <div class="container text-center">
+      <h1 class="mt-5">¡Bienvenido!</h1>
+      <p class="lead"><?php  echo $_SESSION['usuario'];  ?></p>
+      <!--button type="button" class="btn btn-outline-dark">Modificar datos</button-->
     </div>
-    <br>
-    <button type="button" class="btn btn-dark">Ingresar clave</button>
-  </div>
+    <div class="container text-center">
+      <h1 lass="font-weight-bold">Invitaciones:</h1>
+      <ul class="list-group">
+      <?php require("mostrar_invitaciones.php");?>
+      </ul>
+    </div>
+    
+    <div class="container text-center">
+      <p class="lead">Únete a un intercambio con la clave: </p>
+      <form method="POST">
+        <div class="form-floating">
+          <input type="key" class="form-control" id="floatingInput" name="claveI">
+          <label for="floatingInput">Clave</label>
+        </div>
+        <br>
+        <button type="submit" name="clave_inter" class="btn btn-dark">Ingresar clave</button>
+      </form>
+    </div>
+  
 </main>
 
 <footer class="mt-auto text-white-50">

@@ -1,3 +1,8 @@
+<?php
+  session_start();
+
+?>
+
 <!doctype html>
 <html lang="en" class="h-100">
   <head>
@@ -133,10 +138,12 @@
     </ul>
   </div>
   <div class="container">
-    <div class="d-grid gap-2">
-      <button class="btn btn-success" type="button">Aceptar</button>
-      <button class="btn btn-danger" type="button">Borrar</button>
-    </div>
+    <form method="POST">
+      <div class="d-grid gap-2">
+        <button class="btn btn-success" type="submit" name="acp_btn">Aceptar</button>
+        <button class="btn btn-danger" type="submit" name="brr_btn">Borrar</button>
+      </div>
+    </form>
   </div>
 </main>
 

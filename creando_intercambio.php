@@ -80,7 +80,7 @@
                 $result = $statement6->execute(array(
                     ':id_am' => $id_amix['Id_usuario'],
                     ':id_inter' => $key0,
-                    ':nom_int' => $nom_inter,
+                    ':nom_int' => $nom_inter
                 ));
                 
                 if($result)
