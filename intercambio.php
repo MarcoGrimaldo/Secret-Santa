@@ -125,9 +125,28 @@
         {
             foreach($resultado0 as $fila)
             {
-              echo '<li class="list-group-item d-flex justify-content-between align-items-center">'.
+              if($fila['Confirmado'] == 1)
+              {
+                echo '<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-success">'.
                     $fila['Nombre'] . '</li>';
+              }
+
+              else
+              {
+                echo '<li class="list-group-item d-flex justify-content-between align-items-center list-group-item-danger">'.
+                    $fila['Nombre'] . '</li>';
+              }
+              if($_SESSION['usuario'] !== $fila['Nombre'])
+              {
+                array_push($participantes,$fila['Nombre']);
+              }
             }
+
+            $ran = mt_rand(0,count($participantes));
+            //echo $participantes;
+            //echo "<script>alert('". $participantes ."');</script>";
+
+            $te_toco = $participantes[$ran];
         }
         else
         {
@@ -135,6 +154,15 @@
           No hay invitados :(</li>';
         }
       ?>
+    </ul>
+    <br>
+    <p class="text-success">Participante confirmado.</p>
+    <p class="text-danger">Participante sin confirmar.</p>
+  </div>
+  <div class="container">
+    <p class="lead">Te toca darle regalo a:</p>
+    <ul class="list-group">
+      <li class="list-group-item"><?php echo $te_toco; ?></li>
     </ul>
   </div>
   <div class="container">

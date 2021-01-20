@@ -7,6 +7,8 @@
     $coments = "";
     $id_creador = 0;
     $nombre_creador = "";
+    $participantes = array();
+    $te_toco = "";
 
     try{
         $conexion = new PDO('mysql:host=localhost;dbname=SecretSanta','root','');
@@ -41,10 +43,32 @@
         $nom_creador = $statement5->fetch();
         $nombre_creador = $nom_creador['Nombre'];
 
+        if($nombre_creador !== $_SESSION['usuario'])
+        {
+            array_push($participantes,$nombre_creador);
+        }
+
     }
+
+
 
     if(isset($_POST['acp_btn']))
     {
+        if($id_creador !== $_SESSION['id'])
+        {
+            $statement8 = $conexion->prepare('UPDATE Participantes_intercambio SET Confirmado = :boo WHERE Clave_intercambio = :id_int AND Nombre = :nom');
+            $resa00 = $statement8->execute(array(
+                ':boo' => 1,
+                ':id_int' => intval($id_intercambio),
+                ':nom' => $_SESSION['usuario']
+            ));
+
+            if($resa00)
+            {
+                echo "<script>alert('Aceptado!!!');</script>";
+            }
+        }
+
         header('Location: inicio.php');
     }
 
